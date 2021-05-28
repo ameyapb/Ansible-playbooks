@@ -1,0 +1,57 @@
+	<!-- Header -->
+
+	<!-- calling var header[0,1,2,3] -->
+
+	<header class="header">
+			
+		<!-- Top Bar -->
+		<div class="top_bar">
+			<div class="top_bar_container">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
+								<ul class="top_bar_contact_list">
+									<li><div class="question">{{ header[0] }}</div></li>
+									<li>
+										<i class="fa fa-phone" aria-hidden="true"></i>
+										<div>{{ header[1] }}</div>
+									</li>
+									<li>
+										<i class="fa fa-envelope-o" aria-hidden="true"></i>
+										<div>{{ header[2] }}</div>
+									</li>
+								</ul>
+								<div class="top_bar_login ml-auto">
+									<div class="login_button"><a href="http://www.trainingdoor.info/login/index.php">{{ header[3] }}</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>				
+		</div>
+
+	<!-- Menu -->
+
+	<!-- calling var menu -->
+
+	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
+		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+		<div class="search">
+			<form action="#" class="header_search_form menu_mm">
+				<input type="search" class="search_input menu_mm" placeholder="Search" required="required">
+				<button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
+					<i class="fa fa-search menu_mm" aria-hidden="true"></i>
+				</button>
+			</form>
+		</div>
+		<nav class="menu_nav">
+			<ul class="menu_mm">
+								{% for item in menu %}
+								<li class="menu_mm"><a type="text/css" href="index">{{ item }}</a></li>
+								{% endfor %}
+							</ul>
+		</nav>
+	</div>
+	
