@@ -1,0 +1,10 @@
+# /.ansible/roles/homepage/vars
+# 2 variables: 1.header (you'll find it in this file) 2.menu (reusing the same one you have created)
+
+header:
+  - Have any questions?
+  - +(91) 8197408582
+  - basil1987@gmail.com
+  - Training Portal Login
+
+
