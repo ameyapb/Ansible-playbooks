@@ -1,0 +1,46 @@
+- hosts: webservers_wp
+  remote_user: ubuntu
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+    - name: apache instalation 
+      apt:
+        name: apache2
+        state: latest
+        update_cache: yes 
+    - name: PHP instalation 
+      apt:
+        name: libapache2-mod-php
+        state: latest
+        update_cache: yes
+    - name: mysql instalation 
+      apt:
+        name: php-mysql
+        state: latest
+        update_cache: yes
+    - name: apache must be running
+      service:
+        enabled: yes
+        name: apache2
+        state: started
+    - name: apache must be restarted
+      service:
+        enabled: yes
+        name: apache2
+        state: restarted
+    - name: removing index.html
+      file:
+        path: /var/www/html/index/html
+        state: absent
+    - name: download wordpress
+      unarchive:
+        dest: /var/www/html
+        remote_src: yes
+        src: https://wordpress.org/latest.tar.gz
+    - name: cp wp-config.php to /var/www/html
+      copy:
+        dest: /var/www/html/wordpress/wp-config.php
+        src: /home/ansible/.ansible/wp-config.php
+
+

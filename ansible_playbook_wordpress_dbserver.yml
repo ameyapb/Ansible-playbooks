@@ -1,0 +1,40 @@
+- hosts: dbservers_wp
+  remote_user: ubuntu
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+    - name: sql instalation confirmation
+      apt:
+        name: mysql-server
+        update_cache: yes
+        state: latest
+    - name: sql-running confirmation
+      service:
+        name: mysql
+        enabled: yes
+        state: started
+    - name: py installation
+      apt:
+        name: 
+          - python3-pymysql
+        update_cache: yes
+        state: latest
+    - name: database wpdb exist
+      mysql_db:
+        name: wpdb
+        state: present
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+    - name: mysql permissions and logins
+      mysql_user:
+        name: wpuser
+        password: DEVOPS12345
+        priv: wpdb.*:ALL
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+    - name: mysql permissions and logins
+      mysql_user:
+        name: wpuser
+        password: DEVOPS12345
+        priv: wpdb.*:ALL
+        host_all: yes
+        login_unix_socket: /var/run/mysqld/mysqld.sock
